@@ -1,36 +1,194 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏢 GestionRH - Système de Gestion des Ressources Humaines
 
-## Getting Started
+Une application web complète pour la gestion des employés, développée avec Next.js et Node.js.
 
-First, run the development server:
+## 🚀 Fonctionnalités
 
-```bash
+- ✅ **Gestion des employés** : Ajouter, modifier, supprimer et consulter les employés
+- 📊 **Tableau de bord** : Vue d'ensemble avec statistiques
+- 🔍 **Recherche avancée** : Recherche par nom, matricule, département, etc.
+- 📈 **Statistiques** : Analyses détaillées par département et catégorie
+- 📋 **Export Excel** : Export des données en format XLSX
+- 🔐 **Authentification** : Système de connexion sécurisé pour les administrateurs
+- 📱 **Responsive** : Interface adaptée à tous les écrans
+
+## 🛠️ Technologies utilisées
+
+### Frontend
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **shadcn/ui** (composants UI)
+- **Formik + Yup** (gestion des formulaires)
+- **Lucide React** (icônes)
+
+### Backend
+- **Node.js**
+- **Express.js**
+- **MongoDB** avec Mongoose
+- **JWT** (authentification)
+- **bcryptjs** (hashage des mots de passe)
+- **Express Validator** (validation des données)
+
+## 📦 Installation locale
+
+### Prérequis
+- Node.js 18+ 
+- MongoDB (local ou Atlas)
+- Git
+
+### 1. Cloner le repository
+\`\`\`bash
+git clone https://github.com/VOTRE_USERNAME/gestion-rh.git
+cd gestion-rh
+\`\`\`
+
+### 2. Installation du frontend
+\`\`\`bash
+npm install
+\`\`\`
+
+### 3. Installation du backend
+\`\`\`bash
+cd backend
+npm install
+\`\`\`
+
+### 4. Configuration des variables d'environnement
+
+**Frontend** - Créer `.env.local` :
+\`\`\`env
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+\`\`\`
+
+**Backend** - Modifier `backend/.env` :
+\`\`\`env
+NODE_ENV=development
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/gestion-rh
+JWT_SECRET=votre_jwt_secret_tres_securise_ici
+JWT_EXPIRE=7d
+CORS_ORIGIN=http://localhost:3000
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+\`\`\`
+
+### 5. Initialiser la base de données
+\`\`\`bash
+cd backend
+npm run seed
+\`\`\`
+
+### 6. Démarrer l'application
+
+**Terminal 1 - Backend** :
+\`\`\`bash
+cd backend
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Terminal 2 - Frontend** :
+\`\`\`bash
+npm run dev
+\`\`\`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+L'application sera accessible sur : http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔑 Connexion par défaut
 
-## Learn More
+- **Email** : admin@gestionrh.com
+- **Mot de passe** : Admin123
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Structure du projet
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+\`\`\`
+gestion-rh/
+├── app/                    # Pages Next.js (App Router)
+│   ├── admin/             # Pages d'administration
+│   ├── globals.css        # Styles globaux
+│   └── layout.tsx         # Layout principal
+├── backend/               # API Node.js
+│   ├── src/
+│   │   ├── controllers/   # Contrôleurs
+│   │   ├── models/        # Modèles MongoDB
+│   │   ├── routes/        # Routes API
+│   │   ├── middleware/    # Middlewares
+│   │   └── utils/         # Utilitaires
+│   └── package.json
+├── components/            # Composants React
+├── contexts/             # Contextes React
+├── hooks/                # Hooks personnalisés
+├── lib/                  # Utilitaires et services
+├── types/                # Types TypeScript
+└── README.md
+\`\`\`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Déploiement
 
-## Deploy on Vercel
+### Option 1 : Vercel + Railway (Recommandé)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Backend sur Railway** :
+   - Créer un compte sur [railway.app](https://railway.app)
+   - Connecter votre repository GitHub
+   - Ajouter une base de données MongoDB
+   - Configurer les variables d'environnement
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Frontend sur Vercel** :
+   - Créer un compte sur [vercel.com](https://vercel.com)
+   - Importer le projet depuis GitHub
+   - Configurer \`NEXT_PUBLIC_API_URL\`
+
+### Option 2 : Netlify + Heroku
+
+Voir la documentation de déploiement complète dans \`DEPLOYMENT.md\`
+
+## 📊 Données de test
+
+Le script \`npm run seed\` crée :
+- 1 administrateur
+- 8 employés d'exemple
+- Données réparties sur les nouveaux départements et catégories
+
+## 🔧 Scripts disponibles
+
+### Frontend
+- \`npm run dev\` - Démarrer en développement
+- \`npm run build\` - Build de production
+- \`npm run start\` - Démarrer en production
+- \`npm run lint\` - Vérifier le code
+
+### Backend
+- \`npm run dev\` - Démarrer avec nodemon
+- \`npm start\` - Démarrer en production
+- \`npm run seed\` - Initialiser les données de test
+
+## 🤝 Contribution
+
+1. Fork le projet
+2. Créer une branche feature (\`git checkout -b feature/AmazingFeature\`)
+3. Commit les changements (\`git commit -m 'Add some AmazingFeature'\`)
+4. Push vers la branche (\`git push origin feature/AmazingFeature\`)
+5. Ouvrir une Pull Request
+
+## 📝 Licence
+
+Ce projet est sous licence MIT. Voir le fichier \`LICENSE\` pour plus de détails.
+
+## 📞 Support
+
+Pour toute question ou problème :
+- Ouvrir une issue sur GitHub
+- Contacter : votre-email@example.com
+
+## 🎯 Roadmap
+
+- [ ] Gestion des congés avec calendrier
+- [ ] Notifications en temps réel
+- [ ] Rapports PDF
+- [ ] API mobile
+- [ ] Intégration avec systèmes de paie
+- [ ] Multi-tenant (plusieurs entreprises)
+
+---
+
+Développé avec ❤️ pour la gestion moderne des ressources humaines.

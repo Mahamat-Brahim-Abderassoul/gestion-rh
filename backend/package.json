@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "description": "API Backend pour le système de gestion RH",
   "main": "src/server.js",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "jest",
-    "seed": "node src/utils/seed.js"
+    "seed": "node src/utils/seed.js",
+    "build": "echo 'No build step required for Node.js'",
+    "postinstall": "echo 'Installation terminée'"
   },
   "keywords": ["nodejs", "express", "mongodb", "rh", "api"],
   "author": "Votre Nom",
